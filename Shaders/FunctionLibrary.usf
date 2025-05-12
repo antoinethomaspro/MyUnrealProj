@@ -1,0 +1,10 @@
+// FunctionLibrary.usf
+
+RWStructuredBuffer<float3> OutputPositions;
+
+[numthreads(8, 8, 1)]
+void FunctionKernel(uint3 id : SV_DispatchThreadID)
+{
+    uint index = id.y * 128 + id.x; // TODO: Replace 128 with your resolution
+    OutputPositions[index] = float3(id.x * 0.1f, id.y * 0.1f, sin(id.x * 0.1f + id.y * 0.1f)); // example sine wave
+}
